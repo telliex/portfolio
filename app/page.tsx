@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -43,7 +44,137 @@ type ProjectVideoProps = {
   src: string
 }
 
+// Vimeo API response type
+type VimeoVideoFile = {
+  quality: string
+  type: string
+  width: number
+  height: number
+  link: string
+}
+
+type VimeoApiResponse = {
+  files?: VimeoVideoFile[]
+}
+
 function ProjectVideo({ src }: ProjectVideoProps) {
+  const [videoUrl, setVideoUrl] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Check if the source is a Vimeo link
+  const isVimeoLink = src.includes('vimeo.com')
+
+  // Extract Vimeo video ID from URL
+  const getVimeoId = (vimeoUrl: string): string => {
+    // Extract the video ID from various Vimeo URL formats
+    const regex =
+      /(?:vimeo\.com\/(?:manage\/videos\/|video\/|channels\/[\w-]+\/|groups\/[\w-]+\/videos\/|album\/\d+\/video\/|)(\d+))/i
+    const match = vimeoUrl.match(regex)
+    return match && match[1] ? match[1] : ''
+  }
+
+  // Get Vimeo video data using API
+  useEffect(() => {
+    if (!isVimeoLink) {
+      setVideoUrl(src)
+      setIsLoading(false)
+      return
+    }
+
+    const videoId = getVimeoId(src)
+    if (!videoId) {
+      setError('Invalid Vimeo URL')
+      setIsLoading(false)
+      return
+    }
+
+    const fetchVimeoData = async () => {
+      try {
+        setIsLoading(true)
+        const response = await fetch(
+          `https://api.vimeo.com/videos/${videoId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_VIMEO_API_TOKEN}`,
+              'Content-Type': 'application/json',
+              Accept: 'application/vnd.vimeo.*+json;version=3.4',
+            },
+          },
+        )
+
+        if (!response.ok) {
+          throw new Error(`Vimeo API error: ${response.status}`)
+        }
+
+        const data: VimeoApiResponse = await response.json()
+
+        // Get the highest quality MP4 file
+        if (data.files && data.files.length > 0) {
+          // Sort by quality (assuming higher resolution = better quality)
+          const mp4Files = data.files.filter((file) =>
+            file.type.includes('mp4'),
+          )
+          const sortedFiles = mp4Files.sort((a, b) => b.width - a.width)
+
+          if (sortedFiles.length > 0) {
+            setVideoUrl(sortedFiles[0].link)
+          } else {
+            // Fallback to embed if no direct files available
+            setVideoUrl(
+              `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1`,
+            )
+          }
+        } else {
+          // Fallback to embed if no files in response
+          setVideoUrl(
+            `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1`,
+          )
+        }
+      } catch (err) {
+        console.error('Error fetching Vimeo data:', err)
+        setError('Failed to load video')
+        // Fallback to embed on error
+        setVideoUrl(
+          `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1`,
+        )
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchVimeoData()
+  }, [src, isVimeoLink])
+
+  // Get Vimeo embed URL for fallback
+  const getVimeoEmbedUrl = (vimeoUrl: string): string => {
+    const videoId = getVimeoId(vimeoUrl)
+    if (!videoId) return ''
+    return `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&background=1&muted=1`
+  }
+
+  const vimeoEmbedUrl = isVimeoLink ? getVimeoEmbedUrl(src) : ''
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800">
+        <div className="animate-pulse text-zinc-500 dark:text-zinc-400">
+          Loading video...
+        </div>
+      </div>
+    )
+  }
+
+  // Error state
+  if (error && !videoUrl) {
+    return (
+      <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800">
+        <div className="text-red-500">{error}</div>
+      </div>
+    )
+  }
+
   return (
     <MorphingDialog
       transition={{
@@ -53,26 +184,83 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       }}
     >
       <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
+        <div className="group relative aspect-video w-full overflow-hidden rounded-xl">
+          {/* Zoom indicator overlay */}
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/20 group-hover:opacity-100">
+            <div className="rounded-full bg-white/80 p-3 shadow-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-zinc-800"
+              >
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14 21 3"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              </svg>
+            </div>
+          </div>
+
+          {isVimeoLink && !videoUrl.includes('mp4') ? (
+            // Use iframe for embed if direct MP4 link is not available
+            <div className="h-full w-full cursor-zoom-in">
+              <iframe
+                src={vimeoEmbedUrl}
+                className="h-full w-full"
+                allow="autoplay; fullscreen; picture-in-picture"
+                frameBorder="0"
+                title="Vimeo Video"
+              ></iframe>
+            </div>
+          ) : (
+            // Use video tag for direct MP4 links or non-Vimeo videos
+            <video
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full cursor-zoom-in object-cover"
+              onError={(e) => {
+                console.error('Video failed to load:', e)
+                setError('Failed to load video')
+              }}
+            />
+          )}
+        </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
+        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50/90 p-1 ring-1 ring-zinc-200/50 backdrop-blur-sm ring-inset dark:bg-zinc-950/90 dark:ring-zinc-800/50">
+          {isVimeoLink && !videoUrl.includes('mp4') ? (
+            // Use iframe for embed if direct MP4 link is not available
+            <iframe
+              src={videoUrl}
+              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+              allow="autoplay; fullscreen; picture-in-picture"
+              frameBorder="0"
+              title="Vimeo Video Player"
+            ></iframe>
+          ) : (
+            // Use video tag for direct MP4 links or non-Vimeo videos
+            <video
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            />
+          )}
         </MorphingDialogContent>
         <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white/90 p-2 shadow-lg transition-transform hover:scale-110 dark:bg-zinc-800/90 dark:text-zinc-200"
           variants={{
             initial: { opacity: 0 },
             animate: {
@@ -82,7 +270,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
             exit: { opacity: 0, transition: { duration: 0 } },
           }}
         >
-          <XIcon className="h-5 w-5 text-zinc-500" />
+          <XIcon className="h-5 w-5 text-zinc-500 dark:text-zinc-300" />
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>
@@ -137,8 +325,12 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+            Software engineer transitioned from frontend development, with
+            extensive technical experience in Vue.js, React.js, TypeScript,
+            Node.js, and AWS. Skilled in developing enterprise management
+            systems, web applications, and cloud services. Focuses on user
+            experience and system usability. Prefers teamwork to create greater
+            value rather than working independently.
           </p>
         </div>
       </motion.section>
@@ -178,35 +370,62 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
-            <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={job.id}
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {job.title}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {job.company}
+          {WORK_EXPERIENCE.map((job) =>
+            job.link ? (
+              <a
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                href={job.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={job.id}
+              >
+                <Spotlight
+                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                  <div className="relative flex w-full flex-row justify-between">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {job.title}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {job.company}
+                      </p>
+                    </div>
+                    <p className="text-zinc-600 dark:text-zinc-400">
+                      {job.start} - {job.end}
                     </p>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
-                  </p>
+                </div>
+              </a>
+            ) : (
+              <div
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/20 p-[1px] dark:bg-zinc-600/20"
+                key={job.id}
+              >
+                <Spotlight
+                  className="from-zinc-900/50 via-zinc-800/50 to-zinc-700/50 blur-2xl dark:from-zinc-100/50 dark:via-zinc-200/50 dark:to-zinc-50/50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                  <div className="relative flex w-full flex-row justify-between">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {job.title}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {job.company}
+                      </p>
+                    </div>
+                    <p className="text-zinc-600 dark:text-zinc-400">
+                      {job.start} - {job.end}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </a>
-          ))}
+            ),
+          )}
         </div>
       </motion.section>
 
@@ -214,7 +433,9 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
+        {BLOG_POSTS.length > 0 && (
+          <h3 className="mb-3 text-lg font-medium">Blog</h3>
+        )}
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
