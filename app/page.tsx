@@ -357,7 +357,7 @@ export default function Personal() {
           <p className="text-zinc-600 dark:text-zinc-400">
             歡迎來到
             Activo，一家由熱情的軟體工程師創立的個人工作室，致力於將創意與技術融合，為客戶提供高效、可靠且前瞻性的數位解決方案。我是
-            [你的姓名]，Activo 的創辦人，擁有 [X 年]
+            Telliex Chiu，Activo 的創辦人，擁有 8 年
             的軟體開發經驗，專注於構建現代化應用程式與系統，幫助個人與企業實現目標。
           </p>
           <p className="text-zinc-600 dark:text-zinc-400">
@@ -382,6 +382,65 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <div className="mb-4 flex-1">
+          <h4 className="mb-5 text-lg font-medium">
+            Partners - Building the Future Together
+          </h4>
+          <h5 className="mb-2 text-base font-medium">
+            <a
+              href="https://www.canva.com/design/DAGft1ngs4E/TbyK8XrutzvT_6kfckia0Q/edit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Awkns Labs
+            </a>
+          </h5>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            At Activo, we recognize that collaboration is key to driving
+            innovation. That’s why we’re proud to partner with Awkns Labs, a
+            forward-thinking team specializing in Web3 and AI technologies.
+            Awkns Labs excels in developing decentralized applications, smart
+            contracts, and AI-driven solutions, with deep expertise in
+            blockchain, NFT ecosystems, and generative AI models. Their
+            strengths perfectly complement Activo’s capabilities in modern
+            application development.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            Through our partnership with Awkns Labs, we offer clients a broader
+            range of services—from traditional web applications to cutting-edge
+            Web3 platforms and AI-enhanced personalized experiences. Whether
+            it’s building next-generation decentralized marketplaces or
+            leveraging machine learning to optimize business processes, Activo
+            and Awkns Labs turn technological potential into tangible results.
+            Our collaborative approach emphasizes open communication and
+            technical synergy, ensuring every project stands out in the
+            fast-evolving digital landscape.
+          </p>
+        </div>
+        <div className="flex-1">
+          <p className="text-zinc-600 dark:text-zinc-400">
+            在 Activo，我們深知合作是推動創新的關鍵。因此，我們很榮幸能與 Awkns
+            Labs 建立策略夥伴關係，共同探索技術的前沿領域。Awkns Labs
+            是一家專注於 Web3 與 AI
+            技術的創新團隊，致力於打造去中心化應用、智慧合約以及人工智慧驅動的解決方案。他們在區塊鏈技術、NFT
+            生態系統和生成式 AI 模型的開發上擁有深厚專業知識，與 Activo
+            在現代應用程式開發上的實力形成完美互補。
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            透過與 Awkns Labs
+            的合作，我們能夠為客戶提供更全面的服務，從傳統網頁應用到尖端的 Web3
+            平台，甚至是 AI
+            增強的個性化體驗。無論是構建下一代去中心化市場，還是利用機器學習優化業務流程，Activo
+            與 Awkns Labs
+            的聯手將技術潛力轉化為實際成果。我們的合作模式強調開放溝通與技術協同，確保每個專案都能在快速變化的數位世界中脫穎而出。
+          </p>
+        </div>
+      </motion.section>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
@@ -398,8 +457,11 @@ export default function Personal() {
                   {project.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
                 </a>
+                <p className="mb-4 text-base text-zinc-600 dark:text-zinc-400">
+                  {project.description[0]}
+                </p>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
+                  {project.description[1]}
                 </p>
               </div>
             </div>
