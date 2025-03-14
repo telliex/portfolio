@@ -328,7 +328,7 @@ export default function Personal() {
             Welcome to Activo, a personal studio founded by a passionate
             software engineer dedicated to blending creativity with technology
             to deliver efficient, reliable, and forward-thinking digital
-            solutions. I’m Telliex Chiu, the founder of Activo, with 8 years of
+            solutions. I'm Telliex Chiu, the founder of Activo, with 8 years of
             software development experience, specializing in building modern
             applications and systems to help individuals and businesses achieve
             their goals.
@@ -338,7 +338,7 @@ export default function Personal() {
             excel in leveraging cutting-edge frameworks like Next.js, React, and
             TypeScript, combined with cloud technologies (such as AWS or Vercel)
             and efficient DevOps practices, to create everything from MVPs to
-            enterprise-grade applications. Whether it’s developing intuitive web
+            enterprise-grade applications. Whether it's developing intuitive web
             apps, optimizing backend APIs, or integrating multimedia features
             (like video streaming and processing), we provide tailored services
             to meet your unique needs.
@@ -348,7 +348,7 @@ export default function Personal() {
             collaboration. We pay attention to every project detail, ensuring
             clean, maintainable code and working agilely with clients to bring
             ideas to life quickly. From concept design to deployment, Activo is
-            your trusted technology partner. Let’s kickstart your next project
+            your trusted technology partner. Let's kickstart your next project
             together! Contact Activo and discover how technology can bring your
             vision to life.
           </p>
@@ -398,19 +398,19 @@ export default function Personal() {
           </h5>
           <p className="text-zinc-600 dark:text-zinc-400">
             At Activo, we recognize that collaboration is key to driving
-            innovation. That’s why we’re proud to partner with Awkns Labs, a
+            innovation. That's why we're proud to partner with Awkns Labs, a
             forward-thinking team specializing in Web3 and AI technologies.
             Awkns Labs excels in developing decentralized applications, smart
             contracts, and AI-driven solutions, with deep expertise in
             blockchain, NFT ecosystems, and generative AI models. Their
-            strengths perfectly complement Activo’s capabilities in modern
+            strengths perfectly complement Activo's capabilities in modern
             application development.
           </p>
           <p className="text-zinc-600 dark:text-zinc-400">
             Through our partnership with Awkns Labs, we offer clients a broader
             range of services—from traditional web applications to cutting-edge
             Web3 platforms and AI-enhanced personalized experiences. Whether
-            it’s building next-generation decentralized marketplaces or
+            it's building next-generation decentralized marketplaces or
             leveraging machine learning to optimize business processes, Activo
             and Awkns Labs turn technological potential into tangible results.
             Our collaborative approach emphasizes open communication and
@@ -449,14 +449,20 @@ export default function Personal() {
                 <ProjectVideo src={project.video} />
               </div>
               <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
+                {project.link ? (
+                  <a
+                    className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                    href={project.link}
+                    target="_blank"
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                  </a>
+                ) : (
+                  <span className="font-base inline-block font-[450] text-zinc-900 dark:text-zinc-50">
+                    {project.name}
+                  </span>
+                )}
                 <p className="mb-4 text-base text-zinc-600 dark:text-zinc-400">
                   {project.description[0]}
                 </p>
