@@ -20,6 +20,7 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
+import ContactForm from './components/ContactForm'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -218,7 +219,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
                 title="Vimeo Video"
               ></iframe>
             </div>
-          ) : (
+          ) : videoUrl ? (
             // Use video tag for direct MP4 links or non-Vimeo videos
             <video
               src={videoUrl}
@@ -232,6 +233,13 @@ function ProjectVideo({ src }: ProjectVideoProps) {
                 setError('Failed to load video')
               }}
             />
+          ) : (
+            // Show placeholder when no video URL is available
+            <div className="flex h-full w-full items-center justify-center bg-zinc-100 dark:bg-zinc-800">
+              <div className="text-zinc-500 dark:text-zinc-400">
+                No video available
+              </div>
+            </div>
           )}
         </div>
       </MorphingDialogTrigger>
@@ -246,7 +254,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
               frameBorder="0"
               title="Vimeo Video Player"
             ></iframe>
-          ) : (
+          ) : videoUrl ? (
             // Use video tag for direct MP4 links or non-Vimeo videos
             <video
               src={videoUrl}
@@ -257,6 +265,13 @@ function ProjectVideo({ src }: ProjectVideoProps) {
               controls
               className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
             />
+          ) : (
+            // Show placeholder when no video URL is available
+            <div className="flex aspect-video h-[50vh] w-full items-center justify-center rounded-xl bg-zinc-100 md:h-[70vh] dark:bg-zinc-800">
+              <div className="text-zinc-500 dark:text-zinc-400">
+                No video available
+              </div>
+            </div>
           )}
         </MorphingDialogContent>
         <MorphingDialogClose
@@ -597,6 +612,16 @@ export default function Personal() {
               {link.label}
             </MagneticSocialLink>
           ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Contact Form</h3>
+        <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+          <ContactForm />
         </div>
       </motion.section>
     </motion.main>

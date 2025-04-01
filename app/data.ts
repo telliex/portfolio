@@ -68,6 +68,13 @@ export const PROJECTS: Project[] = [
     video: 'https://vimeo.com/1065739824',
     id: 'project4',
   },
+  {
+    name: 'Next.js + headless CMS(Strapi)',
+    description: ['', ''],
+    link: '',
+    video: '',
+    id: 'project5',
+  },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
