@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const file = formData.get('file') as File | null
 
     // Prepare email content
-    const emailContent = {
+    const emailContent: sgMail.MailDataRequired = {
       to: process.env.CONTACT_FORM_TO_EMAIL || '', // Your email address
       from: process.env.CONTACT_FORM_FROM_EMAIL || '', // Verified sender email
       subject: `New Contact Form Submission from ${formData.get('name')}`,
