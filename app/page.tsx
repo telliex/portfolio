@@ -43,6 +43,7 @@ const TRANSITION_SECTION = {
 
 type ProjectVideoProps = {
   src: string
+  image?: string
 }
 
 // Vimeo API response type
@@ -58,13 +59,13 @@ type VimeoApiResponse = {
   files?: VimeoVideoFile[]
 }
 
-function ProjectVideo({ src }: ProjectVideoProps) {
+function ProjectVideo({ src, image }: ProjectVideoProps) {
   const [videoUrl, setVideoUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
   // Check if the source is a Vimeo link
-  const isVimeoLink = src.includes('vimeo.com')
+  const isVimeoLink = src && src.includes('vimeo.com')
 
   // Extract Vimeo video ID from URL
   const getVimeoId = (vimeoUrl: string): string => {
@@ -77,6 +78,13 @@ function ProjectVideo({ src }: ProjectVideoProps) {
 
   // Get Vimeo video data using API
   useEffect(() => {
+    if (!src) {
+      // No video source provided, skip fetching
+      setVideoUrl('')
+      setIsLoading(false)
+      return
+    }
+
     if (!isVimeoLink) {
       setVideoUrl(src)
       setIsLoading(false)
@@ -167,8 +175,42 @@ function ProjectVideo({ src }: ProjectVideoProps) {
     )
   }
 
-  // Error state
-  if (error && !videoUrl) {
+  // If no video source or error and image is provided, show image
+  if ((!src || (error && !videoUrl)) && image) {
+    return (
+      <div className="group relative aspect-video w-full overflow-hidden rounded-xl">
+        {/* Zoom indicator overlay */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/20 group-hover:opacity-100">
+          <div className="rounded-full bg-white/80 p-3 shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-zinc-800"
+            >
+              <path d="M15 3h6v6"></path>
+              <path d="M10 14 21 3"></path>
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            </svg>
+          </div>
+        </div>
+        <img
+          src={image}
+          alt="Project preview"
+          className="h-full w-full cursor-zoom-in object-cover"
+        />
+      </div>
+    )
+  }
+
+  // Error state without fallback image
+  if (error && !videoUrl && !image) {
     return (
       <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800">
         <div className="text-red-500">{error}</div>
@@ -233,11 +275,18 @@ function ProjectVideo({ src }: ProjectVideoProps) {
                 setError('Failed to load video')
               }}
             />
+          ) : image ? (
+            // Show image when no video URL is available but image is provided
+            <img
+              src={image}
+              alt="Project preview"
+              className="h-full w-full cursor-zoom-in object-cover"
+            />
           ) : (
-            // Show placeholder when no video URL is available
+            // Show placeholder when neither video nor image is available
             <div className="flex h-full w-full items-center justify-center bg-zinc-100 dark:bg-zinc-800">
               <div className="text-zinc-500 dark:text-zinc-400">
-                No video available
+                No media available
               </div>
             </div>
           )}
@@ -265,11 +314,18 @@ function ProjectVideo({ src }: ProjectVideoProps) {
               controls
               className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
             />
+          ) : image ? (
+            // Show image when no video URL is available but image is provided
+            <img
+              src={image}
+              alt="Project preview"
+              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
+            />
           ) : (
-            // Show placeholder when no video URL is available
+            // Show placeholder when neither video nor image is available
             <div className="flex aspect-video h-[50vh] w-full items-center justify-center rounded-xl bg-zinc-100 md:h-[70vh] dark:bg-zinc-800">
               <div className="text-zinc-500 dark:text-zinc-400">
-                No video available
+                No media available
               </div>
             </div>
           )}
@@ -461,7 +517,7 @@ export default function Personal() {
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+                <ProjectVideo src={project.video} image={project.image} />
               </div>
               <div className="px-1">
                 <h5 className="mb-2 text-base font-medium">
@@ -480,12 +536,30 @@ export default function Personal() {
                     </span>
                   )}
                 </h5>
-                <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  {project.description[0]}
-                </p>
-                <p className="text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  {project.description[1]}
-                </p>
+                <div>
+                  <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
+                    {project.description[0]}
+                  </p>
+                  <ol className="pl-4">
+                    {project.list['en'].map((item, index) => (
+                      <li className="list-disc" key={index}>
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="mt-4">
+                  <p className="text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
+                    {project.description[1]}
+                  </p>
+                  <ol className="pl-4">
+                    {project.list['zh'].map((item, index) => (
+                      <li className="list-disc" key={index}>
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
             </div>
           ))}
