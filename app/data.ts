@@ -110,6 +110,21 @@ export const PROJECTS: Project[] = [
     image: './ai-swift.jpg',
     id: 'project5',
   },
+  {
+    name: 'Real-time Speech Transcription and Voice Command Control System',
+    description: [
+      "A web application that combines real-time speech transcription with intelligent voice commands. By integrating Deepgram's speech recognition technology, the system can convert speech to text in real-time and support speaker diarization for multi-person conversations. Users can activate voice command mode using the wake word 'Hey Summer', enabling hands-free operation. The system supports bilingual commands in both English and Chinese, coupled with dynamic visual feedback for an intuitive user interface.",
+      '這是一個結合即時語音轉錄和智慧語音命令的網頁應用程式。透過整合 Deepgram 的語音識別技術，系統能夠即時將語音轉換為文字，並支援多人對話的說話者辨識。使用者可以透過喚醒詞 "Hey Summer" 啟動語音命令模式，實現無接觸的操作體驗。系統支援中英文雙語指令，並搭配動態視覺回饋，打造直覺且友善的使用者介面。',
+    ],
+    list: {
+      en: [],
+      zh: [],
+    },
+    link: 'http://speech2text.activo.quest/',
+    video: '',
+    image: './speech2text.jpg',
+    id: 'project6',
+  },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
