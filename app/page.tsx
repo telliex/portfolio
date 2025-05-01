@@ -448,7 +448,151 @@ export default function Personal() {
           </p>
         </div>
       </motion.section>
-
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <div className="mb-4 flex-1">
+          <h4 className="mb-5 text-lg font-medium">Services</h4>
+          <ul className="list-disc space-y-6">
+            <li>
+              <div>
+                <h5 className="mb-2 text-base font-medium">
+                  Mobile Applications
+                </h5>
+                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                  Build iOS and Android applications for your brand, supporting
+                  e-commerce, booking, or social features, enabling quick launch
+                  and user engagement.
+                </p>
+                <ol className="pl-4">
+                  <li>- APP architecture and feature planning</li>
+                  <li>
+                    - Custom architecture and features based on business model
+                  </li>
+                  <li>
+                    - Forum, news, social, entertainment, crypto, trading,
+                    points, etc.
+                  </li>
+                  <li>- Hybrid development for Android and iOS</li>
+                </ol>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h5 className="mb-2 text-base font-medium">
+                  Enterprise Web ERP Solutions
+                </h5>
+                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                  Develop cloud-based subscription platforms to automate your
+                  business processes, from CRM to project management, enhancing
+                  efficiency and data insights.
+                </p>
+                <ol className="pl-4">
+                  <li>- Workflow design for production management systems</li>
+                  <li>
+                    - Business model design for inventory management systems
+                  </li>
+                  <li>
+                    - Logistics management systems for various delivery methods
+                  </li>
+                  <li>
+                    - Custom architecture and features based on business model
+                  </li>
+                </ol>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h5 className="mb-2 text-base font-medium">
+                  E-commerce & Online Stores
+                </h5>
+                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                  Create e-commerce websites for individuals or businesses,
+                  supporting product management, payment integration, and
+                  marketing tools to expand your online market presence.
+                </p>
+                <ol className="pl-4">
+                  <li>- Static template design</li>
+                  <li>
+                    - Custom architecture and features based on business model
+                  </li>
+                  <li>- Shopping cart and online payment integration</li>
+                </ol>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h5 className="mb-2 text-base font-medium">
+                  AI-Enhanced Applications
+                </h5>
+                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                  Integrate AI technology into your products, such as chatbots
+                  or recommendation systems, to enhance user experience and
+                  business outcomes.
+                </p>
+                <ol className="pl-4">
+                  <li>- E-commerce product recommendations</li>
+                  <li>- Customer service automation</li>
+                </ol>
+              </div>
+            </li>
+          </ul>
+          <hr className="my-8" />
+          <ul className="list-disc space-y-6">
+            <li>
+              <h5 className="mb-2 text-base font-medium">各式功能 APP 設計</h5>
+              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                為您的品牌打造 iOS 和 Android
+                應用程式，支援電商、預約、社交等特色功能，快速啟動用戶互動。
+              </p>
+              <ol className="pl-4">
+                <li>- APP 功能架構規劃設計</li>
+                <li>- 可依商業模式客製架構及功能</li>
+                <li>- 論壇、新聞、交友、娛樂、虛幣、交易、點數等...</li>
+                <li>- 混合開發 Android、IOS</li>
+              </ol>
+            </li>
+            <li>
+              <h5 className="mb-2 text-base font-medium">
+                企業 Web ERP 解決方案
+              </h5>
+              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                開發雲端訂閱制平台，自動化您的業務流程，從 CRM
+                到項目管理，提升效率與數據洞察。
+              </p>
+              <ol className="pl-4">
+                <li>- 各類工作流程設計生產管理系統</li>
+                <li>- 各類商業模式設計進銷存系統</li>
+                <li>- 各類配送方式設計物流管理系統</li>
+                <li>- 可依商業模式客製架構及功能</li>
+              </ol>
+            </li>
+            <li>
+              <h5 className="mb-2 text-base font-medium">電商與線上商店</h5>
+              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                打造個人或企業的電商網站，支援產品管理、支付與行銷整合，助您開拓線上市場。
+              </p>
+              <ol className="pl-4">
+                <li>- 靜態版型設計</li>
+                <li>- 可依商業模式客製架構及功能</li>
+                <li>- 購物車、線上金流</li>
+              </ol>
+            </li>
+            <li>
+              <h5 className="mb-2 text-base font-medium">AI 增強應用</h5>
+              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                將 AI
+                技術融入您的產品，如聊天機器人或推薦系統，提升用戶體驗與業務成果。
+              </p>
+              <ol className="pl-4">
+                <li>- 電商產品推薦</li>
+                <li>- 客服自動化</li>
+              </ol>
+            </li>
+          </ul>
+        </div>
+      </motion.section>
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
