@@ -3,7 +3,7 @@
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { useEffect, useRef, useState, type RefObject } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import useClickOutside from '@/hooks/useClickOutside'
 import { useLanguage, useTranslations } from '@/lib/language-context'
@@ -25,7 +25,8 @@ function ThemeDropdown() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const ref = useRef<HTMLDivElement>(null)
-  useClickOutside(ref as RefObject<HTMLDivElement>, () => setOpen(false))
+  const handleOutside = useCallback(() => setOpen(false), [])
+  useClickOutside(ref, handleOutside)
 
   useEffect(() => {
     setMounted(true)
@@ -43,6 +44,7 @@ function ThemeDropdown() {
         onClick={() => setOpen((p) => !p)}
         className="flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
         aria-label="Switch theme"
+        aria-expanded={open}
         type="button"
       >
         <Icon className="h-3.5 w-3.5" />
@@ -81,7 +83,8 @@ function LangDropdown() {
   const [open, setOpen] = useState(false)
   const { lang, setLang } = useLanguage()
   const ref = useRef<HTMLDivElement>(null)
-  useClickOutside(ref as RefObject<HTMLDivElement>, () => setOpen(false))
+  const handleOutside = useCallback(() => setOpen(false), [])
+  useClickOutside(ref, handleOutside)
 
   return (
     <div ref={ref} className="relative">
@@ -89,9 +92,10 @@ function LangDropdown() {
         onClick={() => setOpen((p) => !p)}
         className="flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
         aria-label="Switch language"
+        aria-expanded={open}
         type="button"
       >
-        {lang === 'en' ? 'EN' : '中'}
+        {lang === 'en' ? 'EN' : '中文'}
         <ChevronDownIcon className="h-3 w-3 text-zinc-300 dark:text-zinc-600" />
       </button>
       {open && (
