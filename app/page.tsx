@@ -21,6 +21,7 @@ import {
   SOCIAL_LINKS,
 } from './data'
 import ContactForm from './components/ContactForm'
+import { useLanguage, useTranslations } from '@/lib/language-context'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -383,6 +384,8 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
+  const { lang } = useLanguage()
+  const t = useTranslations()
   return (
     <motion.main
       className="space-y-24"
@@ -395,57 +398,11 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="mb-8 flex-1">
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            Welcome to Activo, a personal studio founded by a passionate
-            software engineer dedicated to blending creativity with technology
-            to deliver efficient, reliable, and forward-thinking digital
-            solutions. I'm Telliex Chiu, the founder of Activo, with 8 years of
-            software development experience, specializing in building modern
-            applications and systems to help individuals and businesses achieve
-            their goals.
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            At Activo, we believe technology should be simple yet powerful. We
-            excel in leveraging cutting-edge frameworks like Next.js, React, and
-            TypeScript, combined with cloud technologies (such as AWS or Vercel)
-            and efficient DevOps practices, to create everything from MVPs to
-            enterprise-grade applications. Whether it's developing intuitive web
-            apps, optimizing backend APIs, or integrating multimedia features
-            (like video streaming and processing), we provide tailored services
-            to meet your unique needs.
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            Activo is built on the values of quality, transparency, and
-            collaboration. We pay attention to every project detail, ensuring
-            clean, maintainable code and working agilely with clients to bring
-            ideas to life quickly. From concept design to deployment, Activo is
-            your trusted technology partner. Let's kickstart your next project
-            together! Contact Activo and discover how technology can bring your
-            vision to life.
-          </p>
-        </div>
-        <div className="flex-1">
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            歡迎來到
-            Activo，一家由熱情的軟體工程師創立的個人工作室，致力於將創意與技術融合，為客戶提供高效、可靠且前瞻性的數位解決方案。我是
-            Telliex Chiu，Activo 的創辦人，擁有 8 年
-            的軟體開發經驗，專注於構建現代化應用程式與系統，幫助個人與企業實現目標。
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            在 Activo，我們相信技術應該簡單而強大。我們擅長使用
-            Next.js、React、TypeScript 等前沿框架，結合雲端技術（如 AWS 或
-            Vercel）與高效 DevOps 實踐，打造從 MVP
-            到企業級應用的完整解決方案。無論是開發直觀的網頁應用、優化後端
-            API，還是整合多媒體功能（如影片串流與處理），我們都能提供客製化服務，滿足你的獨特需求。
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            Activo
-            的核心價值在於品質、透明與協作。我們重視每一個專案細節，確保程式碼乾淨、可維護，並以敏捷方式與客戶合作，讓想法快速落地。從概念設計到部署上線，Activo
-            是你值得信賴的技術夥伴。 讓我們一起啟動你的下一個專案！聯繫
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            Activo，探索技術如何為你的願景增添活力。
-          </p>
+          {t.intro.map((paragraph, i) => (
+            <p key={i} className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+              {paragraph}
+            </p>
+          ))}
         </div>
       </motion.section>
       <motion.section
@@ -453,143 +410,23 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="mb-4 flex-1">
-          <h4 className="mb-5 text-lg font-medium">Services</h4>
+          <h4 className="mb-5 text-lg font-medium">{t.servicesHeading}</h4>
           <ul className="list-disc space-y-6">
-            <li>
-              <div>
-                <h5 className="mb-2 text-base font-medium">
-                  Mobile Applications
-                </h5>
-                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  Build iOS and Android applications for your brand, supporting
-                  e-commerce, booking, or social features, enabling quick launch
-                  and user engagement.
-                </p>
-                <ol className="pl-4">
-                  <li>- APP architecture and feature planning</li>
-                  <li>
-                    - Custom architecture and features based on business model
-                  </li>
-                  <li>
-                    - Forum, news, social, entertainment, crypto, trading,
-                    points, etc.
-                  </li>
-                  <li>- Hybrid development for Android and iOS</li>
-                </ol>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h5 className="mb-2 text-base font-medium">
-                  Enterprise Web ERP Solutions
-                </h5>
-                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  Develop cloud-based subscription platforms to automate your
-                  business processes, from CRM to project management, enhancing
-                  efficiency and data insights.
-                </p>
-                <ol className="pl-4">
-                  <li>- Workflow design for production management systems</li>
-                  <li>
-                    - Business model design for inventory management systems
-                  </li>
-                  <li>
-                    - Logistics management systems for various delivery methods
-                  </li>
-                  <li>
-                    - Custom architecture and features based on business model
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h5 className="mb-2 text-base font-medium">
-                  E-commerce & Online Stores
-                </h5>
-                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  Create e-commerce websites for individuals or businesses,
-                  supporting product management, payment integration, and
-                  marketing tools to expand your online market presence.
-                </p>
-                <ol className="pl-4">
-                  <li>- Static template design</li>
-                  <li>
-                    - Custom architecture and features based on business model
-                  </li>
-                  <li>- Shopping cart and online payment integration</li>
-                </ol>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h5 className="mb-2 text-base font-medium">
-                  AI-Enhanced Applications
-                </h5>
-                <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                  Integrate AI technology into your products, such as chatbots
-                  or recommendation systems, to enhance user experience and
-                  business outcomes.
-                </p>
-                <ol className="pl-4">
-                  <li>- E-commerce product recommendations</li>
-                  <li>- Customer service automation</li>
-                </ol>
-              </div>
-            </li>
-          </ul>
-          <hr className="my-8" />
-          <ul className="list-disc space-y-6">
-            <li>
-              <h5 className="mb-2 text-base font-medium">各式功能 APP 設計</h5>
-              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                為您的品牌打造 iOS 和 Android
-                應用程式，支援電商、預約、社交等特色功能，快速啟動用戶互動。
-              </p>
-              <ol className="pl-4">
-                <li>- APP 功能架構規劃設計</li>
-                <li>- 可依商業模式客製架構及功能</li>
-                <li>- 論壇、新聞、交友、娛樂、虛幣、交易、點數等...</li>
-                <li>- 混合開發 Android、IOS</li>
-              </ol>
-            </li>
-            <li>
-              <h5 className="mb-2 text-base font-medium">
-                企業 Web ERP 解決方案
-              </h5>
-              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                開發雲端訂閱制平台，自動化您的業務流程，從 CRM
-                到項目管理，提升效率與數據洞察。
-              </p>
-              <ol className="pl-4">
-                <li>- 各類工作流程設計生產管理系統</li>
-                <li>- 各類商業模式設計進銷存系統</li>
-                <li>- 各類配送方式設計物流管理系統</li>
-                <li>- 可依商業模式客製架構及功能</li>
-              </ol>
-            </li>
-            <li>
-              <h5 className="mb-2 text-base font-medium">電商與線上商店</h5>
-              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                打造個人或企業的電商網站，支援產品管理、支付與行銷整合，助您開拓線上市場。
-              </p>
-              <ol className="pl-4">
-                <li>- 靜態版型設計</li>
-                <li>- 可依商業模式客製架構及功能</li>
-                <li>- 購物車、線上金流</li>
-              </ol>
-            </li>
-            <li>
-              <h5 className="mb-2 text-base font-medium">AI 增強應用</h5>
-              <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-                將 AI
-                技術融入您的產品，如聊天機器人或推薦系統，提升用戶體驗與業務成果。
-              </p>
-              <ol className="pl-4">
-                <li>- 電商產品推薦</li>
-                <li>- 客服自動化</li>
-              </ol>
-            </li>
+            {t.services.map((service) => (
+              <li key={service.name}>
+                <div>
+                  <h5 className="mb-2 text-base font-medium">{service.name}</h5>
+                  <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+                    {service.description}
+                  </p>
+                  <ol className="pl-4">
+                    {service.list.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ol>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </motion.section>
@@ -598,9 +435,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="mb-4 flex-1">
-          <h4 className="mb-5 text-lg font-medium">
-            Partners - Building the Future Together
-          </h4>
+          <h4 className="mb-5 text-lg font-medium">{t.partnersHeading}</h4>
           <h5 className="mb-2 text-base font-medium">
             <a
               href="https://www.canva.com/design/DAGft1ngs4E/TbyK8XrutzvT_6kfckia0Q/edit"
@@ -608,55 +443,21 @@ export default function Personal() {
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              Awkns Labs
+              {t.partnersPartnerName}
             </a>
           </h5>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            At Activo, we recognize that collaboration is key to driving
-            innovation. That's why we're proud to partner with Awkns Labs, a
-            forward-thinking team specializing in Web3 and AI technologies.
-            Awkns Labs excels in developing decentralized applications, smart
-            contracts, and AI-driven solutions, with deep expertise in
-            blockchain, NFT ecosystems, and generative AI models. Their
-            strengths perfectly complement Activo's capabilities in modern
-            application development.
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            Through our partnership with Awkns Labs, we offer clients a broader
-            range of services—from traditional web applications to cutting-edge
-            Web3 platforms and AI-enhanced personalized experiences. Whether
-            it's building next-generation decentralized marketplaces or
-            leveraging machine learning to optimize business processes, Activo
-            and Awkns Labs turn technological potential into tangible results.
-            Our collaborative approach emphasizes open communication and
-            technical synergy, ensuring every project stands out in the
-            fast-evolving digital landscape.
-          </p>
-        </div>
-        <div className="flex-1">
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            在 Activo，我們深知合作是推動創新的關鍵。因此，我們很榮幸能與 Awkns
-            Labs 建立策略夥伴關係，共同探索技術的前沿領域。Awkns Labs
-            是一家專注於 Web3 與 AI
-            技術的創新團隊，致力於打造去中心化應用、智慧合約以及人工智慧驅動的解決方案。他們在區塊鏈技術、NFT
-            生態系統和生成式 AI 模型的開發上擁有深厚專業知識，與 Activo
-            在現代應用程式開發上的實力形成完美互補。
-          </p>
-          <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
-            透過與 Awkns Labs
-            的合作，我們能夠為客戶提供更全面的服務，從傳統網頁應用到尖端的 Web3
-            平台，甚至是 AI
-            增強的個性化體驗。無論是構建下一代去中心化市場，還是利用機器學習優化業務流程，Activo
-            與 Awkns Labs
-            的聯手將技術潛力轉化為實際成果。我們的合作模式強調開放溝通與技術協同，確保每個專案都能在快速變化的數位世界中脫穎而出。
-          </p>
+          {t.partnersBody.map((paragraph, i) => (
+            <p key={i} className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+              {paragraph}
+            </p>
+          ))}
         </div>
       </motion.section>
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
+        <h3 className="mb-5 text-lg font-medium">{t.selectedProjectsHeading}</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -680,30 +481,18 @@ export default function Personal() {
                     </span>
                   )}
                 </h5>
-                <div>
-                  <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
-                    {project.description[0]}
-                  </p>
+                <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
+                  {project.description[lang === 'en' ? 0 : 1]}
+                </p>
+                {project.list[lang].length > 0 && (
                   <ol className="pl-4">
-                    {project.list['en'].map((item, index) => (
+                    {project.list[lang].map((item, index) => (
                       <li className="list-disc" key={index}>
                         {item}
                       </li>
                     ))}
                   </ol>
-                </div>
-                <div className="mt-4">
-                  <p className="text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
-                    {project.description[1]}
-                  </p>
-                  <ol className="pl-4">
-                    {project.list['zh'].map((item, index) => (
-                      <li className="list-disc" key={index}>
-                        {item}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
+                )}
               </div>
             </div>
           ))}
@@ -714,7 +503,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h3 className="mb-5 text-lg font-medium">{t.workExperienceHeading}</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) =>
             job.link ? (
@@ -780,7 +569,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         {BLOG_POSTS.length > 0 && (
-          <h3 className="mb-3 text-lg font-medium">Blog</h3>
+          <h3 className="mb-3 text-lg font-medium">{t.blogHeading}</h3>
         )}
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
@@ -817,9 +606,9 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h3 className="mb-5 text-lg font-medium">{t.connectHeading}</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
+          {t.connectIntro}{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
@@ -837,7 +626,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Contact Form</h3>
+        <h3 className="mb-5 text-lg font-medium">{t.contactFormHeading}</h3>
         <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
           <ContactForm />
         </div>
