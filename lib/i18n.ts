@@ -1,6 +1,6 @@
 export type Lang = 'en' | 'zh'
 
-type ServiceItem = {
+export type ServiceItem = {
   name: string
   description: string
   list: string[]
