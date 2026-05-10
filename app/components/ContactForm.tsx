@@ -113,7 +113,7 @@ export default function ContactForm() {
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

@@ -1,5 +1,11 @@
 'use client'
-import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { translations, type Lang, type Translations } from './i18n'
 
 type LanguageContextValue = {

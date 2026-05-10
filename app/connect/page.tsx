@@ -20,7 +20,10 @@ export default function ConnectPage() {
       initial="hidden"
       animate="visible"
     >
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h2 className="mb-5 text-lg font-medium">{t.connectHeading}</h2>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           {t.connectIntro}{' '}
@@ -37,7 +40,10 @@ export default function ConnectPage() {
         </div>
       </motion.section>
 
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h2 className="mb-5 text-lg font-medium">{t.contactFormHeading}</h2>
         <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
           <ContactForm />

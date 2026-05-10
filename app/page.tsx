@@ -31,15 +31,24 @@ export default function Personal() {
       animate="visible"
     >
       {/* Intro + Partners body merged */}
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <div className="mb-8 flex-1">
           {t.intro.map((paragraph, i) => (
-            <p key={i} className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+            <p
+              key={i}
+              className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400"
+            >
               {paragraph}
             </p>
           ))}
           {t.partnersBody.map((paragraph, i) => (
-            <p key={`partner-${i}`} className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
+            <p
+              key={`partner-${i}`}
+              className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400"
+            >
               {paragraph}
             </p>
           ))}
@@ -47,7 +56,10 @@ export default function Personal() {
       </motion.section>
 
       {/* Work Experience */}
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h2 className="mb-5 text-lg font-medium">{t.workExperienceHeading}</h2>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => {
@@ -69,8 +81,12 @@ export default function Personal() {
                     aria-expanded={isExpanded}
                   >
                     <div>
-                      <h3 className="font-normal dark:text-zinc-100">{job.title}</h3>
-                      <p className="text-zinc-500 dark:text-zinc-400">{job.company}</p>
+                      <h3 className="font-normal dark:text-zinc-100">
+                        {job.title}
+                      </h3>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {job.company}
+                      </p>
                     </div>
                     <div className="flex items-center gap-2">
                       <p className="text-zinc-600 dark:text-zinc-400">
@@ -119,7 +135,10 @@ export default function Personal() {
       </motion.section>
 
       {/* Blog */}
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         {BLOG_POSTS.length > 0 && (
           <h2 className="mb-3 text-lg font-medium">{t.blogHeading}</h2>
         )}
@@ -137,8 +156,12 @@ export default function Personal() {
                 data-id={post.uid}
               >
                 <div className="flex flex-col space-y-1">
-                  <h3 className="font-normal dark:text-zinc-100">{post.title}</h3>
-                  <p className="text-zinc-500 dark:text-zinc-400">{post.description}</p>
+                  <h3 className="font-normal dark:text-zinc-100">
+                    {post.title}
+                  </h3>
+                  <p className="text-zinc-500 dark:text-zinc-400">
+                    {post.description}
+                  </p>
                 </div>
               </Link>
             ))}

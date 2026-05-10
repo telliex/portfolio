@@ -19,7 +19,12 @@ export type Translations = {
 export const translations: Record<Lang, Translations> = {
   en: {
     headerSubtitle: 'Innovative Technology, Exceptional Solutions',
-    nav: { home: 'Home', services: 'Services', projects: 'Projects', connect: 'Connect' },
+    nav: {
+      home: 'Home',
+      services: 'Services',
+      projects: 'Projects',
+      connect: 'Connect',
+    },
     intro: [
       "Welcome to Activo, a personal studio founded by a passionate software engineer dedicated to blending creativity with technology to deliver efficient, reliable, and forward-thinking digital solutions. I'm Telliex Chiu, the founder of Activo, with 8 years of software development experience, specializing in building modern applications and systems to help individuals and businesses achieve their goals.",
       "At Activo, we believe technology should be simple yet powerful. We excel in leveraging cutting-edge frameworks like Next.js, React, and TypeScript, combined with cloud technologies (such as AWS or Vercel) and efficient DevOps practices, to create everything from MVPs to enterprise-grade applications. Whether it's developing intuitive web apps, optimizing backend APIs, or integrating multimedia features (like video streaming and processing), we provide tailored services to meet your unique needs.",

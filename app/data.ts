@@ -73,7 +73,10 @@ export const SERVICES: Service[] = [
       zh: '將 AI 技術融入您的產品，如聊天機器人或推薦系統，提升用戶體驗與業務成果。',
     },
     list: {
-      en: ['- E-commerce product recommendations', '- Customer service automation'],
+      en: [
+        '- E-commerce product recommendations',
+        '- Customer service automation',
+      ],
       zh: ['- 電商產品推薦', '- 客服自動化'],
     },
   },
@@ -310,7 +313,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work0',
     details: {
       en: [
-        'AdTech Modernization: Modernised a legacy banner-ad delivery system from Flash to HTML5/CSS3/JavaScript, supporting rich-media and video ad formats across Yahoo\'s Taiwan, Hong Kong, and Southeast Asia portals.',
+        "AdTech Modernization: Modernised a legacy banner-ad delivery system from Flash to HTML5/CSS3/JavaScript, supporting rich-media and video ad formats across Yahoo's Taiwan, Hong Kong, and Southeast Asia portals.",
         'Ad Analytics Pipeline: Contributed to the ad-analytics reporting pipeline (Perl, JavaScript) that aggregated impression and click data for 100M+ daily ad events.',
       ],
       zh: [

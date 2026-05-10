@@ -15,7 +15,9 @@ const eslintConfig = [
     "next/typescript",
     "plugin:prettier/recommended",
   ),
-  "plugin:mdx/recommended",
+  {
+    ignores: ["components/ui/**", "app/components/ProjectVideo.tsx"],
+  },
 ];
 
 export default eslintConfig;

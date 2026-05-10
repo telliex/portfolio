@@ -21,8 +21,13 @@ export default function ProjectsPage() {
       initial="hidden"
       animate="visible"
     >
-      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h2 className="mb-5 text-lg font-medium">{t.selectedProjectsHeading}</h2>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h2 className="mb-5 text-lg font-medium">
+          {t.selectedProjectsHeading}
+        </h2>
         <div className="flex flex-col space-y-6">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
