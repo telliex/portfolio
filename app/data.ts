@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
     list: { en: [], zh: [] },
     link: 'https://www.pounds.network/landing.html',
     video: '',
-    image: '',
+    image: './pounds-network.jpg',
     id: 'project7',
   },
   {
@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
     list: { en: [], zh: [] },
     link: 'https://www.yoh.app/',
     video: '',
-    image: '',
+    image: './yoh-app.jpg',
     id: 'project8',
   },
   {
