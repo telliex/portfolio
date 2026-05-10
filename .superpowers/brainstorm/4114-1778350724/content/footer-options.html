@@ -1,0 +1,66 @@
+<h2>Footer Control Options</h2>
+<p class="subtitle">Which layout for the theme dropdown + language switcher feels right?</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Icon dropdown + Text toggle</h3>
+      <p>Theme: single icon button that opens a dropdown (Light / Dark / System). Language: two pill buttons <strong>EN</strong> / <strong>中</strong> side by side.</p>
+      <div style="margin-top:12px; display:flex; align-items:center; gap:10px; padding:10px 14px; background:#f4f4f5; border-radius:10px; width:fit-content; font-size:13px;">
+        <div style="position:relative; display:inline-block;">
+          <button style="display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;font-size:12px;cursor:pointer;">
+            ☀️ Light <span style="font-size:10px;">▾</span>
+          </button>
+        </div>
+        <div style="width:1px;height:18px;background:#e4e4e7;"></div>
+        <button style="padding:3px 9px;border-radius:6px;border:none;background:#18181b;color:#fff;font-size:12px;font-weight:600;cursor:pointer;">EN</button>
+        <button style="padding:3px 9px;border-radius:6px;border:1px solid #e4e4e7;background:transparent;color:#71717a;font-size:12px;cursor:pointer;">中</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Two unified dropdowns</h3>
+      <p>Both theme and language as compact dropdown buttons, styled consistently. Clean, symmetric.</p>
+      <div style="margin-top:12px; display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f4f4f5; border-radius:10px; width:fit-content; font-size:13px;">
+        <button style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;font-size:12px;cursor:pointer;">
+          ☀️ <span style="color:#71717a; font-size:10px;">▾</span>
+        </button>
+        <button style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;font-size:12px;cursor:pointer;">
+          EN <span style="color:#71717a; font-size:10px;">▾</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Single combined dropdown</h3>
+      <p>One button opens a panel with both theme and language controls inside. Most compact — single control surface.</p>
+      <div style="margin-top:12px; display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f4f4f5; border-radius:10px; width:fit-content; font-size:13px;">
+        <button style="display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;font-size:12px;cursor:pointer;">
+          ⚙️ Settings <span style="color:#71717a; font-size:10px;">▾</span>
+        </button>
+      </div>
+      <div style="margin-top:8px; padding:10px 14px; background:#fff; border:1px solid #e4e4e7; border-radius:10px; width:fit-content; font-size:12px;">
+        <div style="color:#71717a; font-size:10px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;">Theme</div>
+        <div style="display:flex;gap:4px;margin-bottom:10px;">
+          <button style="padding:3px 8px;border-radius:6px;border:none;background:#18181b;color:#fff;font-size:11px;">☀️ Light</button>
+          <button style="padding:3px 8px;border-radius:6px;border:1px solid #e4e4e7;background:transparent;font-size:11px;">🌙 Dark</button>
+          <button style="padding:3px 8px;border-radius:6px;border:1px solid #e4e4e7;background:transparent;font-size:11px;">🖥 System</button>
+        </div>
+        <div style="color:#71717a; font-size:10px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;">Language</div>
+        <div style="display:flex;gap:4px;">
+          <button style="padding:3px 8px;border-radius:6px;border:none;background:#18181b;color:#fff;font-size:11px;">EN</button>
+          <button style="padding:3px 8px;border-radius:6px;border:1px solid #e4e4e7;background:transparent;font-size:11px;">中文</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

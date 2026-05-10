@@ -18,6 +18,10 @@ type WorkExperience = {
   end: string
   link: string
   id: string
+  details: {
+    en: string[]
+    zh: string[]
+  }
 }
 
 type BlogPost = {
@@ -130,35 +134,85 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Awkns',
-    title: 'Software Engineer',
-    start: '2024',
-    end: 'Present',
+    title: 'Senior Full-Stack Software Engineer',
+    start: 'May 2023',
+    end: 'Mar 2026',
     link: '',
-    id: 'work1',
+    id: 'work3',
+    details: {
+      en: [
+        'High-Concurrency Ticketing: Designed and delivered a ticketing platform (Next.js, TypeScript, Zustand, Go) that handles flash-sale concurrency peaks; optimized event-list rendering to cut load time by 40%.',
+        'Config-Driven Console: Built an operator back-office (React, TypeScript, Ant Design) where all campaigns, pricing, and seat maps are managed through config rather than code changes; reduced operator error rate by 60%.',
+        'Multi-Game Framework: Architected a shareable game-logic layer (TypeScript, Zustand) across five mini-game variants — spin wheel, lottery, scratch card, etc. — cutting new-game launch time from weeks to days.',
+        'Offline-First Redemption: Created a PWA (Next.js, Service Worker, IndexedDB) for on-site staff to scan QR codes and redeem loyalty points even in poor-signal venues; real-time sync resumes automatically on reconnect.',
+        'Multi-Tenant SaaS: Led the multi-tenancy refactor that allows a single deployment to serve multiple brand clients with isolated data, custom domains, and white-label UIs.',
+      ],
+      zh: [
+        '高併發售票：設計並交付以 Next.js、TypeScript、Zustand、Go 開發的售票平台，支援閃購活動的高峰並發；優化活動列表渲染，將載入時間縮短 40%。',
+        '配置驅動後台：建構以 React、TypeScript、Ant Design 開發的營運後台，所有活動、定價與座位圖均透過設定檔管理，無需更改程式碼；將營運錯誤率降低 60%。',
+        '多遊戲框架：設計可跨五種小遊戲（轉盤、抽獎、刮刮樂等）共用的遊戲邏輯層（TypeScript、Zustand），將新遊戲上線時間從數週縮短至數天。',
+        '離線優先核銷：開發 PWA（Next.js、Service Worker、IndexedDB），讓現場工作人員在訊號不佳的場館也能掃描 QR 碼並核銷會員積分；重新連線後自動即時同步。',
+        '多租戶 SaaS：主導多租戶重構，使單一部署可為多個品牌客戶提供服務，並具備獨立資料隔離、自訂網域與白標 UI。',
+      ],
+    },
   },
   {
     company: 'ECloudyValley',
-    title: 'Software Engineer ',
-    start: '2022',
-    end: '2024',
+    title: 'Senior Full-Stack Software Engineer',
+    start: 'Apr 2022',
+    end: 'Apr 2023',
     link: '',
     id: 'work2',
+    details: {
+      en: [
+        'Cloud Billing Dashboard: Developed a real-time billing overview UI (Vue 3, TypeScript, ECharts) for AWS/GCP/Azure consumption tracking; introduced lazy-loading of chart data that reduced initial page load by 50%.',
+        'Billing Data Pipeline: Built a data-aggregation layer (Node.js) that normalises cost data from three cloud providers into a unified schema, enabling cross-cloud cost comparison and export to CSV/Excel.',
+        'Shared Component Library: Established a cross-team component library (Vue 3, Storybook) with 30+ reusable components; served as frontend tech lead for quarterly cross-team code reviews.',
+      ],
+      zh: [
+        '雲端帳單儀表板：使用 Vue 3、TypeScript、ECharts 開發 AWS/GCP/Azure 的即時帳單概覽介面；引入圖表資料懶載入，將首頁載入時間縮短 50%。',
+        '帳單資料管道：建構 Node.js 資料整合層，將三家雲端供應商的費用資料標準化為統一格式，支援跨雲成本比較及 CSV/Excel 匯出。',
+        '共用元件庫：建立跨團隊元件庫（Vue 3、Storybook），包含 30+ 個可重用元件；擔任前端技術負責人，主持每季跨團隊程式碼審查。',
+      ],
+    },
   },
   {
     company: 'Shinho',
     title: 'Senior Frontend Engineer & Frontend Leader',
-    start: '2015',
-    end: '2022',
+    start: 'Dec 2015',
+    end: 'Mar 2022',
     link: '',
-    id: 'work3',
+    id: 'work1',
+    details: {
+      en: [
+        'IoT Dashboard: Led end-to-end delivery of a real-time factory IoT dashboard (Vue 2, D3.js, MQTT WebSocket) that visualises machine sensor data for 200+ production lines; alert latency under 2 seconds.',
+        'Micro-Frontend Migration: Drove the phased migration from a jQuery monolith to Vue 2 micro-frontends over 18 months, covering 15+ modules without a single production downtime.',
+        'F&B Mobile Ordering: Delivered a mobile-first PWA (Vue 2, Vuex) for table-side food ordering across 50+ restaurant locations; QR code entry and real-time order status reduced staff workload by 30%.',
+      ],
+      zh: [
+        'IoT 儀表板：端到端交付工廠即時 IoT 儀表板（Vue 2、D3.js、MQTT WebSocket），可視化 200+ 條產線的機台感測器資料；警報延遲低於 2 秒。',
+        '微前端遷移：主導從 jQuery 單體架構到 Vue 2 微前端的 18 個月分階段遷移，涵蓋 15+ 個模組，全程零生產環境停機。',
+        '餐飲行動點餐：交付 50+ 家餐廳門市的桌邊行動點餐 PWA（Vue 2、Vuex），QR Code 入場與即時訂單狀態追蹤，將員工工作量降低 30%。',
+      ],
+    },
   },
   {
     company: 'Yahoo',
-    title: 'Frontend Creative Engineer',
-    start: '2010',
-    end: '2015',
+    title: 'Frontend Engineer',
+    start: 'May 2010',
+    end: 'Nov 2015',
     link: '',
-    id: 'work4',
+    id: 'work0',
+    details: {
+      en: [
+        'AdTech Modernization: Modernised a legacy banner-ad delivery system from Flash to HTML5/CSS3/JavaScript, supporting rich-media and video ad formats across Yahoo\'s Taiwan, Hong Kong, and Southeast Asia portals.',
+        'Ad Analytics Pipeline: Contributed to the ad-analytics reporting pipeline (Perl, JavaScript) that aggregated impression and click data for 100M+ daily ad events.',
+      ],
+      zh: [
+        '廣告技術現代化：將舊版橫幅廣告投放系統從 Flash 升級至 HTML5/CSS3/JavaScript，支援富媒體與影片廣告格式，覆蓋 Yahoo 台灣、香港及東南亞入口網站。',
+        '廣告分析管道：參與廣告分析報告管道（Perl、JavaScript）開發，彙整每日 1 億次以上廣告曝光與點擊資料。',
+      ],
+    },
   },
 ]
 
@@ -192,7 +246,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/telliex-chiu-5639b7142/',
+    link: 'https://www.linkedin.com/in/telliex-chiu/',
   },
 ]
 
