@@ -136,8 +136,8 @@ export function Header() {
         <div className="flex items-center justify-between py-3">
           {/* Left: logo + desktop nav links */}
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-xl font-bold text-black dark:text-white">
-              Activo | Telliex Chiu
+            <Link href="/" className="text-black dark:text-white">
+              <h1 className="text-xl font-bold">Activo | Telliex Chiu</h1>
             </Link>
             <nav className="hidden items-center gap-1 md:flex">
               {NAV_LINKS.map((link) => {
