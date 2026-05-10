@@ -1,17 +1,10 @@
 export type Lang = 'en' | 'zh'
 
-export type ServiceItem = {
-  name: string
-  description: string
-  list: string[]
-}
-
 export type Translations = {
   headerSubtitle: string
   nav: { home: string; services: string; projects: string; connect: string }
   intro: string[]
   servicesHeading: string
-  services: ServiceItem[]
   partnersHeading: string
   partnersPartnerName: string
   partnersBody: string[]
@@ -33,46 +26,6 @@ export const translations: Record<Lang, Translations> = {
       "Activo is built on the values of quality, transparency, and collaboration. We pay attention to every project detail, ensuring clean, maintainable code and working agilely with clients to bring ideas to life quickly. From concept design to deployment, Activo is your trusted technology partner. Let's kickstart your next project together! Contact Activo and discover how technology can bring your vision to life.",
     ],
     servicesHeading: 'Services',
-    services: [
-      {
-        name: 'Mobile Applications',
-        description:
-          "Build iOS and Android applications for your brand, supporting e-commerce, booking, or social features, enabling quick launch and user engagement.",
-        list: [
-          '- APP architecture and feature planning',
-          '- Custom architecture and features based on business model',
-          '- Forum, news, social, entertainment, crypto, trading, points, etc.',
-          '- Hybrid development for Android and iOS',
-        ],
-      },
-      {
-        name: 'Enterprise Web ERP Solutions',
-        description:
-          'Develop cloud-based subscription platforms to automate your business processes, from CRM to project management, enhancing efficiency and data insights.',
-        list: [
-          '- Workflow design for production management systems',
-          '- Business model design for inventory management systems',
-          '- Logistics management systems for various delivery methods',
-          '- Custom architecture and features based on business model',
-        ],
-      },
-      {
-        name: 'E-commerce & Online Stores',
-        description:
-          'Create e-commerce websites for individuals or businesses, supporting product management, payment integration, and marketing tools to expand your online market presence.',
-        list: [
-          '- Static template design',
-          '- Custom architecture and features based on business model',
-          '- Shopping cart and online payment integration',
-        ],
-      },
-      {
-        name: 'AI-Enhanced Applications',
-        description:
-          'Integrate AI technology into your products, such as chatbots or recommendation systems, to enhance user experience and business outcomes.',
-        list: ['- E-commerce product recommendations', '- Customer service automation'],
-      },
-    ],
     partnersHeading: 'Partners - Building the Future Together',
     partnersPartnerName: 'Awkns Labs',
     partnersBody: [
@@ -95,46 +48,6 @@ export const translations: Record<Lang, Translations> = {
       'Activo 的核心價值在於品質、透明與協作。我們重視每一個專案細節，確保程式碼乾淨、可維護，並以敏捷方式與客戶合作，讓想法快速落地。從概念設計到部署上線，Activo 是你值得信賴的技術夥伴。讓我們一起啟動你的下一個專案！聯繫 Activo，探索技術如何為你的願景增添活力。',
     ],
     servicesHeading: '服務',
-    services: [
-      {
-        name: '各式功能 APP 設計',
-        description:
-          '為您的品牌打造 iOS 和 Android 應用程式，支援電商、預約、社交等特色功能，快速啟動用戶互動。',
-        list: [
-          '- APP 功能架構規劃設計',
-          '- 可依商業模式客製架構及功能',
-          '- 論壇、新聞、交友、娛樂、虛幣、交易、點數等...',
-          '- 混合開發 Android、IOS',
-        ],
-      },
-      {
-        name: '企業 Web ERP 解決方案',
-        description:
-          '開發雲端訂閱制平台，自動化您的業務流程，從 CRM 到項目管理，提升效率與數據洞察。',
-        list: [
-          '- 各類工作流程設計生產管理系統',
-          '- 各類商業模式設計進銷存系統',
-          '- 各類配送方式設計物流管理系統',
-          '- 可依商業模式客製架構及功能',
-        ],
-      },
-      {
-        name: '電商與線上商店',
-        description:
-          '打造個人或企業的電商網站，支援產品管理、支付與行銷整合，助您開拓線上市場。',
-        list: [
-          '- 靜態版型設計',
-          '- 可依商業模式客製架構及功能',
-          '- 購物車、線上金流',
-        ],
-      },
-      {
-        name: 'AI 增強應用',
-        description:
-          '將 AI 技術融入您的產品，如聊天機器人或推薦系統，提升用戶體驗與業務成果。',
-        list: ['- 電商產品推薦', '- 客服自動化'],
-      },
-    ],
     partnersHeading: '合作夥伴 - 共同建構未來',
     partnersPartnerName: 'Awkns Labs',
     partnersBody: [

@@ -1,3 +1,84 @@
+type Service = {
+  name: { en: string; zh: string }
+  description: { en: string; zh: string }
+  list: { en: string[]; zh: string[] }
+}
+
+export const SERVICES: Service[] = [
+  {
+    name: { en: 'Mobile Applications', zh: '各式功能 APP 設計' },
+    description: {
+      en: 'Build iOS and Android applications for your brand, supporting e-commerce, booking, or social features, enabling quick launch and user engagement.',
+      zh: '為您的品牌打造 iOS 和 Android 應用程式，支援電商、預約、社交等特色功能，快速啟動用戶互動。',
+    },
+    list: {
+      en: [
+        '- APP architecture and feature planning',
+        '- Custom architecture and features based on business model',
+        '- Forum, news, social, entertainment, crypto, trading, points, etc.',
+        '- Hybrid development for Android and iOS',
+      ],
+      zh: [
+        '- APP 功能架構規劃設計',
+        '- 可依商業模式客製架構及功能',
+        '- 論壇、新聞、交友、娛樂、虛幣、交易、點數等...',
+        '- 混合開發 Android、IOS',
+      ],
+    },
+  },
+  {
+    name: { en: 'Enterprise Web ERP Solutions', zh: '企業 Web ERP 解決方案' },
+    description: {
+      en: 'Develop cloud-based subscription platforms to automate your business processes, from CRM to project management, enhancing efficiency and data insights.',
+      zh: '開發雲端訂閱制平台，自動化您的業務流程，從 CRM 到項目管理，提升效率與數據洞察。',
+    },
+    list: {
+      en: [
+        '- Workflow design for production management systems',
+        '- Business model design for inventory management systems',
+        '- Logistics management systems for various delivery methods',
+        '- Custom architecture and features based on business model',
+      ],
+      zh: [
+        '- 各類工作流程設計生產管理系統',
+        '- 各類商業模式設計進銷存系統',
+        '- 各類配送方式設計物流管理系統',
+        '- 可依商業模式客製架構及功能',
+      ],
+    },
+  },
+  {
+    name: { en: 'E-commerce & Online Stores', zh: '電商與線上商店' },
+    description: {
+      en: 'Create e-commerce websites for individuals or businesses, supporting product management, payment integration, and marketing tools to expand your online market presence.',
+      zh: '打造個人或企業的電商網站，支援產品管理、支付與行銷整合，助您開拓線上市場。',
+    },
+    list: {
+      en: [
+        '- Static template design',
+        '- Custom architecture and features based on business model',
+        '- Shopping cart and online payment integration',
+      ],
+      zh: [
+        '- 靜態版型設計',
+        '- 可依商業模式客製架構及功能',
+        '- 購物車、線上金流',
+      ],
+    },
+  },
+  {
+    name: { en: 'AI-Enhanced Applications', zh: 'AI 增強應用' },
+    description: {
+      en: 'Integrate AI technology into your products, such as chatbots or recommendation systems, to enhance user experience and business outcomes.',
+      zh: '將 AI 技術融入您的產品，如聊天機器人或推薦系統，提升用戶體驗與業務成果。',
+    },
+    list: {
+      en: ['- E-commerce product recommendations', '- Customer service automation'],
+      zh: ['- 電商產品推薦', '- 客服自動化'],
+    },
+  },
+]
+
 type Project = {
   name: string
   description: string[]
