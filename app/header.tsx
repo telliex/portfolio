@@ -11,8 +11,7 @@ import type { Lang } from '@/lib/i18n'
 
 const THEME_OPTIONS = [
   { id: 'light', label: 'Light', Icon: SunIcon },
-  { id: 'dark', label: 'Dark', Icon: MoonIcon },
-  { id: 'system', label: 'System', Icon: MonitorIcon },
+  { id: 'dark', label: 'Dark', Icon: MoonIcon }
 ] as const
 
 const LANG_OPTIONS: { id: Lang; label: string }[] = [
