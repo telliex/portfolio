@@ -1,17 +1,30 @@
 // app/header.tsx
 'use client'
-import { TextEffect } from '@/components/ui/text-effect'
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import {
+  ChevronDownIcon,
+  MenuIcon,
+  XIcon,
+  SunIcon,
+  MoonIcon,
+} from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import useClickOutside from '@/hooks/useClickOutside'
 import { useLanguage, useTranslations } from '@/lib/language-context'
 import type { Lang } from '@/lib/i18n'
 
+const NAV_LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/connect', label: 'Connect' },
+]
+
 const THEME_OPTIONS = [
   { id: 'light', label: 'Light', Icon: SunIcon },
-  { id: 'dark', label: 'Dark', Icon: MoonIcon }
+  { id: 'dark', label: 'Dark', Icon: MoonIcon },
 ] as const
 
 const LANG_OPTIONS: { id: Lang; label: string }[] = [
@@ -27,14 +40,10 @@ function ThemeDropdown() {
   const handleOutside = useCallback(() => setOpen(false), [])
   useClickOutside(ref, handleOutside)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
+  useEffect(() => { setMounted(true) }, [])
   if (!mounted) return null
 
-  const current =
-    THEME_OPTIONS.find((o) => o.id === theme) ?? THEME_OPTIONS[0]
+  const current = THEME_OPTIONS.find((o) => o.id === theme) ?? THEME_OPTIONS[0]
   const { Icon } = current
 
   return (
@@ -57,14 +66,9 @@ function ThemeDropdown() {
               <button
                 key={opt.id}
                 type="button"
-                onClick={() => {
-                  setTheme(opt.id)
-                  setOpen(false)
-                }}
+                onClick={() => { setTheme(opt.id); setOpen(false) }}
                 className={`flex w-full items-center gap-2 px-3 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 ${
-                  isActive
-                    ? 'bg-zinc-100 dark:bg-zinc-800'
-                    : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
+                  isActive ? 'bg-zinc-100 dark:bg-zinc-800' : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
                 }`}
               >
                 <opt.Icon className="h-3.5 w-3.5" />
@@ -105,14 +109,9 @@ function LangDropdown() {
               <button
                 key={opt.id}
                 type="button"
-                onClick={() => {
-                  setLang(opt.id)
-                  setOpen(false)
-                }}
+                onClick={() => { setLang(opt.id); setOpen(false) }}
                 className={`flex w-full items-center px-3 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 ${
-                  isActive
-                    ? 'bg-zinc-100 dark:bg-zinc-800'
-                    : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
+                  isActive ? 'bg-zinc-100 dark:bg-zinc-800' : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
                 }`}
               >
                 {opt.label}
@@ -127,26 +126,86 @@ function LangDropdown() {
 
 export function Header() {
   const t = useTranslations()
+  const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <header className="mb-8 flex items-center justify-between">
-      <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
-          <h1 className="text-2xl font-bold">Activo | Telliex Chiu</h1>
-        </Link>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="text-zinc-600 dark:text-zinc-500"
-          delay={0.5}
-        >
+    <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+      <div className="mx-auto w-full max-w-screen-sm px-4">
+        {/* Main nav row */}
+        <div className="flex items-center justify-between py-3">
+          {/* Left: logo + desktop nav links */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="text-xl font-bold text-black dark:text-white">
+              Activo | Telliex Chiu
+            </Link>
+            <nav className="hidden items-center gap-1 md:flex">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
+                      isActive
+                        ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'
+                        : 'text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-800/50'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+          {/* Right: controls + hamburger */}
+          <div className="flex items-center gap-2">
+            <ThemeDropdown />
+            <LangDropdown />
+            <button
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 md:hidden"
+              onClick={() => setMenuOpen((p) => !p)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              type="button"
+            >
+              {menuOpen
+                ? <XIcon className="h-5 w-5" />
+                : <MenuIcon className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+        {/* Subtitle — desktop only */}
+        <p className="hidden pb-2 text-sm text-zinc-500 dark:text-zinc-500 md:block">
           {t.headerSubtitle}
-        </TextEffect>
+        </p>
       </div>
-      <div className="flex items-center gap-2">
-        <ThemeDropdown />
-        <LangDropdown />
-      </div>
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 md:hidden">
+          <div className="mx-auto w-full max-w-screen-sm px-4 py-2">
+            <nav className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`rounded-lg px-3 py-2 text-sm transition-colors ${
+                      isActive
+                        ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'
+                        : 'text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-800/50'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
