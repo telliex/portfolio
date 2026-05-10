@@ -23,15 +23,15 @@ export default function ServicesPage() {
           {t.services.map((service) => (
             <li key={service.name}>
               <div>
-                <h5 className="mb-2 text-base font-medium">{service.name}</h5>
+                <h4 className="mb-2 text-base font-medium">{service.name}</h4>
                 <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
                   {service.description}
                 </p>
-                <ol className="pl-4">
+                <ul className="list-none pl-4">
                   {service.list.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
-                </ol>
+                </ul>
               </div>
             </li>
           ))}

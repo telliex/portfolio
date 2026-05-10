@@ -30,7 +30,7 @@ export default function ProjectsPage() {
                 <ProjectVideo src={project.video} image={project.image} />
               </div>
               <div className="px-1">
-                <h5 className="mb-2 text-base font-medium">
+                <h4 className="mb-2 text-base font-medium">
                   {project.link ? (
                     <Link
                       href={project.link}
@@ -43,18 +43,16 @@ export default function ProjectsPage() {
                   ) : (
                     <span>{project.name}</span>
                   )}
-                </h5>
+                </h4>
                 <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
                   {project.description[lang === 'en' ? 0 : 1]}
                 </p>
                 {project.list[lang].length > 0 && (
-                  <ol className="pl-4">
+                  <ul className="list-disc pl-4">
                     {project.list[lang].map((item, index) => (
-                      <li className="list-disc" key={index}>
-                        {item}
-                      </li>
+                      <li key={index}>{item}</li>
                     ))}
-                  </ol>
+                  </ul>
                 )}
               </div>
             </div>
