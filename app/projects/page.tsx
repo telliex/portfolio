@@ -22,7 +22,7 @@ export default function ProjectsPage() {
       animate="visible"
     >
       <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-5 text-lg font-medium">{t.selectedProjectsHeading}</h3>
+        <h2 className="mb-5 text-lg font-medium">{t.selectedProjectsHeading}</h2>
         <div className="flex flex-col space-y-6">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
                 <ProjectVideo src={project.video} image={project.image} />
               </div>
               <div className="px-1">
-                <h4 className="mb-2 text-base font-medium">
+                <h3 className="mb-2 text-base font-medium">
                   {project.link ? (
                     <Link
                       href={project.link}
@@ -43,7 +43,7 @@ export default function ProjectsPage() {
                   ) : (
                     <span>{project.name}</span>
                   )}
-                </h4>
+                </h3>
                 <p className="mb-4 text-base leading-6.5 text-zinc-600 dark:text-zinc-400">
                   {project.description[lang === 'en' ? 0 : 1]}
                 </p>

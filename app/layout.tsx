@@ -70,7 +70,7 @@ export default function RootLayout({
           defaultTheme="system"
         >
           <LanguageProvider>
-            <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
+            <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-geist)]">
               <Header />
               <div className="mx-auto w-full max-w-screen-sm flex-1 px-4 py-8">
                 {children}

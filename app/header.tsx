@@ -15,12 +15,7 @@ import useClickOutside from '@/hooks/useClickOutside'
 import { useLanguage, useTranslations } from '@/lib/language-context'
 import type { Lang } from '@/lib/i18n'
 
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/connect', label: 'Connect' },
-]
+const NAV_HREFS = ['/', '/services', '/projects', '/connect'] as const
 
 const THEME_OPTIONS = [
   { id: 'light', label: 'Light', Icon: SunIcon },
@@ -128,6 +123,8 @@ export function Header() {
   const t = useTranslations()
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const navLabels = [t.nav.home, t.nav.services, t.nav.projects, t.nav.connect]
+  const navLinks = NAV_HREFS.map((href, i) => ({ href, label: navLabels[i] }))
 
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
@@ -140,7 +137,7 @@ export function Header() {
               <h1 className="text-xl font-bold">Activo | Telliex Chiu</h1>
             </Link>
             <nav className="hidden items-center gap-1 md:flex">
-              {NAV_LINKS.map((link) => {
+              {navLinks.map((link) => {
                 const isActive = pathname === link.href
                 return (
                   <Link
@@ -185,7 +182,7 @@ export function Header() {
         <div className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 md:hidden">
           <div className="mx-auto w-full max-w-screen-sm px-4 py-2">
             <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => {
+              {navLinks.map((link) => {
                 const isActive = pathname === link.href
                 return (
                   <Link

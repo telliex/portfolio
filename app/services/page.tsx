@@ -18,12 +18,12 @@ export default function ServicesPage() {
       animate="visible"
     >
       <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-5 text-lg font-medium">{t.servicesHeading}</h3>
+        <h2 className="mb-5 text-lg font-medium">{t.servicesHeading}</h2>
         <ul className="list-disc space-y-6">
           {t.services.map((service) => (
             <li key={service.name}>
               <div>
-                <h4 className="mb-2 text-base font-medium">{service.name}</h4>
+                <h3 className="mb-2 text-base font-medium">{service.name}</h3>
                 <p className="mb-4 leading-6.5 text-zinc-600 dark:text-zinc-400">
                   {service.description}
                 </p>
