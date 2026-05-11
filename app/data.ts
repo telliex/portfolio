@@ -122,6 +122,30 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Pounds — AI Business Platform for Service Pros',
+    description: [
+      'Pounds is an all-in-one AI-powered business platform built for hands-on service professionals — nail technicians, barbers, trainers, and therapists. The platform unifies bookings, Stripe payments, a loyalty rewards programme, referral automation, and AI-generated social media marketing into a single dashboard. The embedded AI continuously learns from campaign performance, optimising content, timing, and outreach so practitioners can focus on their craft rather than client acquisition.',
+      'Pounds 是一款專為手作服務業設計的全方位 AI 商業管理平台，服務對象涵蓋美甲師、理髮師、健身教練及治療師。平台將預約管理、Stripe 支付、會員積分計畫、推薦獎勵與 AI 社群媒體行銷整合至單一後台。內建 AI 持續依據活動成效優化內容、發佈時機與推廣策略，讓從業者能專注於自身技藝，無需為客源開發分心。',
+    ],
+    list: { en: [], zh: [] },
+    link: 'https://www.pounds.network/landing.html',
+    video: '',
+    image: './pounds-network.jpg',
+    id: 'project8',
+  },
+  {
+    name: 'Yoh — AI Video Studio for Creators',
+    description: [
+      'Yoh is a direct-to-fan AI video studio that empowers creators to produce, publish, and monetize episodic content without a production crew. A single prompt is transformed by the AI story engine into full storylines with plot structure and character arcs. The platform handles video generation, character consistency across episodes, dialogue, original scores, and ambient audio — then delivers everything through a creator storefront where fans subscribe and stream. Creators keep 85% of every sale with weekly Stripe payouts.',
+      'Yoh 是一個直達粉絲的 AI 影片工作室，讓創作者無需製作團隊即可製作、發佈並從劇集內容中獲利。AI 故事引擎將單一提示轉化為具備完整情節結構與角色弧線的故事。平台負責影片生成、跨集角色一致性、對白、原創配樂與環境音效，並透過創作者專屬頁面讓粉絲訂閱與觀看。創作者可保留 85% 的收益，每週透過 Stripe 撥款。',
+    ],
+    list: { en: [], zh: [] },
+    link: 'https://www.yoh.app/',
+    video: '',
+    image: './yoh-app.jpg',
+    id: 'project7',
+  },
+  {
     name: 'Subscription Landing Page',
     description: [
       'This project is a high-performance landing page tailored for subscription-based services, designed to captivate potential customers and boost conversion rates. Built with Next.js and React, it features a responsive, intuitive interface paired with clear CTAs (calls-to-action) and a seamless user experience. Whether for SaaS platforms, content creators, or online courses, this landing page adapts effortlessly, leveraging modern design and technology to showcase product value and drive subscription growth. ',
@@ -131,7 +155,7 @@ export const PROJECTS: Project[] = [
     link: 'https://demo-subscribe.activo.quest',
     video: 'https://vimeo.com/1065359670',
     image: '',
-    id: 'project1',
+    id: 'project6',
   },
   {
     name: 'Point trading system - staff end',
@@ -143,7 +167,7 @@ export const PROJECTS: Project[] = [
     link: 'https://demo-points-staff.activo.quest/app',
     video: 'https://vimeo.com/1065359662',
     image: '',
-    id: 'project2',
+    id: 'project5',
   },
   {
     name: 'Point trading system - user end',
@@ -155,7 +179,7 @@ export const PROJECTS: Project[] = [
     link: 'https://demo-points-user.activo.quest/zh/demo-app',
     video: 'https://vimeo.com/1065359644',
     image: '',
-    id: 'project3',
+    id: 'project4',
   },
   {
     name: 'Purchase ticket',
@@ -167,7 +191,7 @@ export const PROJECTS: Project[] = [
     link: '',
     video: 'https://vimeo.com/1065739824',
     image: '',
-    id: 'project4',
+    id: 'project3',
   },
   {
     name: 'Swift Multilingual Voice Assistant Project',
@@ -196,32 +220,9 @@ export const PROJECTS: Project[] = [
     link: 'http://ai-swift.activo.quest/',
     video: '',
     image: './ai-swift.jpg',
-    id: 'project5',
+    id: 'project2',
   },
-  {
-    name: 'Pounds — AI Business Platform for Service Pros',
-    description: [
-      'Pounds is an all-in-one AI-powered business platform built for hands-on service professionals — nail technicians, barbers, trainers, and therapists. The platform unifies bookings, Stripe payments, a loyalty rewards programme, referral automation, and AI-generated social media marketing into a single dashboard. The embedded AI continuously learns from campaign performance, optimising content, timing, and outreach so practitioners can focus on their craft rather than client acquisition.',
-      'Pounds 是一款專為手作服務業設計的全方位 AI 商業管理平台，服務對象涵蓋美甲師、理髮師、健身教練及治療師。平台將預約管理、Stripe 支付、會員積分計畫、推薦獎勵與 AI 社群媒體行銷整合至單一後台。內建 AI 持續依據活動成效優化內容、發佈時機與推廣策略，讓從業者能專注於自身技藝，無需為客源開發分心。',
-    ],
-    list: { en: [], zh: [] },
-    link: 'https://www.pounds.network/landing.html',
-    video: '',
-    image: './pounds-network.jpg',
-    id: 'project7',
-  },
-  {
-    name: 'Yoh — AI Video Studio for Creators',
-    description: [
-      'Yoh is a direct-to-fan AI video studio that empowers creators to produce, publish, and monetize episodic content without a production crew. A single prompt is transformed by the AI story engine into full storylines with plot structure and character arcs. The platform handles video generation, character consistency across episodes, dialogue, original scores, and ambient audio — then delivers everything through a creator storefront where fans subscribe and stream. Creators keep 85% of every sale with weekly Stripe payouts.',
-      'Yoh 是一個直達粉絲的 AI 影片工作室，讓創作者無需製作團隊即可製作、發佈並從劇集內容中獲利。AI 故事引擎將單一提示轉化為具備完整情節結構與角色弧線的故事。平台負責影片生成、跨集角色一致性、對白、原創配樂與環境音效，並透過創作者專屬頁面讓粉絲訂閱與觀看。創作者可保留 85% 的收益，每週透過 Stripe 撥款。',
-    ],
-    list: { en: [], zh: [] },
-    link: 'https://www.yoh.app/',
-    video: '',
-    image: './yoh-app.jpg',
-    id: 'project8',
-  },
+ 
   {
     name: 'Real-time Speech Transcription and Voice Command Control System',
     description: [
@@ -235,7 +236,7 @@ export const PROJECTS: Project[] = [
     link: 'http://speech2text.activo.quest/',
     video: '',
     image: './speech2text.jpg',
-    id: 'project6',
+    id: 'project1',
   },
 ]
 
