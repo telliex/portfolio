@@ -222,7 +222,6 @@ export const PROJECTS: Project[] = [
     image: './ai-swift.jpg',
     id: 'project2',
   },
- 
   {
     name: 'Real-time Speech Transcription and Voice Command Control System',
     description: [
@@ -237,7 +236,7 @@ export const PROJECTS: Project[] = [
     video: '',
     image: './speech2text.jpg',
     id: 'project1',
-  },
+  }
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
