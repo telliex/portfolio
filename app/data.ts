@@ -236,7 +236,7 @@ export const PROJECTS: Project[] = [
     video: '',
     image: './speech2text.jpg',
     id: 'project1',
-  }
+  },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
